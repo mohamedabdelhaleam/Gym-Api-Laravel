@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ProgramController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth:api");
+    }
     public function getAllPrograms()
     {
         $program = Program::get();
@@ -64,7 +68,7 @@ class ProgramController extends Controller
             'message' => "Program Deleted Successfully"
         ], 200);
     }
-    public function update(Request $request ,$programId)
+    public function update(Request $request, $programId)
     {
         $program = Program::find($programId);
         if (!$program) {
