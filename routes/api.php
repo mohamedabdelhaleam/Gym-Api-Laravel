@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,4 +36,10 @@ Route::group([
     Route::post('/create', [ProgramController::class, 'create']);
     Route::patch('/update/{programId}', [ProgramController::class, 'update']);
     Route::delete('/dedlete/{programId}', [ProgramController::class, 'delete']);
+});
+Route::group([
+    'prefix' => 'user'
+], function () {
+    Route::patch('/update', [UserController::class, 'update']);
+    Route::delete('/dedlete', [UserController::class, 'delete']);
 });
