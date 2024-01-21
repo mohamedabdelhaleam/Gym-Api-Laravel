@@ -12,6 +12,20 @@ class UserController extends Controller
     {
         $this->middleware('auth:api');
     }
+    public function index()
+    {
+        $users = User::all();
+        if (!$users) {
+            return response()->json([
+                'status' => "fail",
+                'message' => "Not Found"
+            ], 404);
+        }
+        return response()->json([
+            'status' => "success",
+            'data' => $users
+        ], 200);
+    }
     public function update(Request $request)
     {
         $userData = Auth::user();
