@@ -22,6 +22,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'program_id'
     ];
 
     /**
@@ -32,6 +33,7 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password',
         'remember_token',
+        'program_id'
     ];
 
     /**
@@ -60,5 +62,11 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+
+    public function Subscriptions()
+    {
+        return $this->hasOne(Subscription::class, 'user_id', 'id');
     }
 }
