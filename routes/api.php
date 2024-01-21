@@ -40,6 +40,7 @@ Route::group([
 Route::group([
     'prefix' => 'user'
 ], function () {
+    Route::patch('', [UserController::class, 'index']);
     Route::patch('/update', [UserController::class, 'update']);
     Route::delete('/dedlete', [UserController::class, 'delete']);
 });
