@@ -65,8 +65,8 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
-    public function Subscriptions()
+    public function Programs()
     {
-        return $this->hasOne(Subscription::class, 'user_id', 'id');
+        return $this->belongToMany(Program::class, 'subscriptions', 'user_id', 'program_id');
     }
 }

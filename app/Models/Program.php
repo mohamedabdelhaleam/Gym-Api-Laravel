@@ -14,8 +14,8 @@ class Program extends Model
     protected $hidden = ['coach_id', 'created_at'];
     public $timestamps = true;
 
-    public function Subscriptions()
+    public function Users()
     {
-        return $this->hasMany(Subscription::class, 'program_id', 'id');
+        return $this->belongsToMany(User::class, 'program_id', 'user_id');
     }
 }
