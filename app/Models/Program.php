@@ -13,4 +13,9 @@ class Program extends Model
     protected $fillable = ['name', 'description', 'image', 'created_at', 'coach_id'];
     protected $hidden = ['coach_id', 'created_at'];
     public $timestamps = true;
+
+    public function Subscriptions()
+    {
+        return $this->hasMany(Subscription::class, 'program_id', 'id');
+    }
 }
