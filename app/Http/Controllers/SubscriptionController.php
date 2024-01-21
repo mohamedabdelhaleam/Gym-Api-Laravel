@@ -22,13 +22,13 @@ class SubscriptionController extends Controller
         }
         return response()->json([
             'status' => "success",
-            'data' => $subscription
+            'message' => "Done"
         ], 200);
     }
-    public function unSubscription()
+    public function unSubscription($programId)
     {
         $user = Auth::user();
-        $subscription = Subscription::where('user_id', $user->id);
+        $subscription = Subscription::where('user_id', $user->id)->find($programId);
         if (!$subscription) {
             return response()->json([
                 'status' => "fail",
@@ -38,7 +38,7 @@ class SubscriptionController extends Controller
         $subscription->delete();
         return response()->json([
             'status' => "success",
-            'message' => "Deleted Successfully",
+            'message' => "Done",
         ], 200);
     }
 }
