@@ -13,8 +13,8 @@ class ProgramController extends Controller
     }
     public function getAllPrograms()
     {
-        $program = Program::get();
-        if (!$program) {
+        $programs = Program::all();
+        if (!$programs) {
             return response()->json([
                 'status' => "fail",
                 'message' => "Not Found",
@@ -22,7 +22,7 @@ class ProgramController extends Controller
         }
         return response()->json([
             'status' => "success",
-            'data' => $program
+            'data' => $programs
         ], 200);
     }
     public function getProgram($programId)
@@ -81,6 +81,22 @@ class ProgramController extends Controller
         return response()->json([
             'status' => "success",
             'message' => "Program Updated Successfully"
+        ], 200);
+    }
+    public function getUserInProgram($programId)
+    {
+        $program = Program::with(['Users' => function ($q) {
+            $q->select('name');
+        }])->find($programId);
+        if (!$program) {
+            return response()->json([
+                'status' => "fail",
+                'message' => "Not Found",
+            ], 404);
+        }
+        return response()->json([
+            'status' => "success",
+            'data' => $program
         ], 200);
     }
 }
