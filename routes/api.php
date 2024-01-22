@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+##################### Start Auth Routes #########################
 
 Route::group([
     'middleware' => 'api',
@@ -28,6 +29,11 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
+
+##################### End Auth Routes #########################
+
+##################### Start Program Routes #########################
+
 Route::group([
     'prefix' => 'program'
 ], function () {
@@ -36,11 +42,20 @@ Route::group([
     Route::post('/create', [ProgramController::class, 'create']);
     Route::patch('/update/{programId}', [ProgramController::class, 'update']);
     Route::delete('/dedlete/{programId}', [ProgramController::class, 'delete']);
+    Route::get('/userInProgram/{programId}', [ProgramController::class, 'getUserInProgram']);
 });
+
+##################### End Program Routes #########################
+
+##################### Start User Routes #########################
+
 Route::group([
     'prefix' => 'user'
 ], function () {
     Route::patch('', [UserController::class, 'index']);
     Route::patch('/update', [UserController::class, 'update']);
-    Route::delete('/dedlete', [UserController::class, 'delete']);
+    Route::delete('/delete', [UserController::class, 'delete']);
+    Route::get('/userPrograms', [UserController::class, 'userPrograms']);
 });
+
+##################### End User Routes #########################
