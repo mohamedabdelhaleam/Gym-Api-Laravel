@@ -10,6 +10,6 @@ class Subscription extends Model
     use HasFactory;
     protected $table = "subscriptions";
     protected $fillable = ['program_id', 'user_id'];
-    protected $hidden = ['program_id', 'user_id'];
+    protected $hidden = ['program_id', 'user_id', 'created_at'];
     protected $timestamps = true;
 }
