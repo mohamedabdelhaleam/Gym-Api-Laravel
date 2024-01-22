@@ -46,4 +46,21 @@ class UserController extends Controller
             'message' => "Deleted Successfully"
         ], 200);
     }
+    public function userPrograms()
+    {
+        $user = Auth::user();
+        $programs = User::with(['Programs' => function ($q) {
+            $q->select('id', 'name', 'image');
+        }])->find($user->id);
+        if ($programs) {
+            return response()->json([
+                'status' => "fail",
+                'message' => "Not Found",
+            ], 404);
+        }
+        return response()->json([
+            'status' => "success",
+            'data' => $programs
+        ], 200);
+    }
 }
