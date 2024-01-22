@@ -11,11 +11,11 @@ class Program extends Model
 
     protected $table = "programs";
     protected $fillable = ['name', 'description', 'image', 'created_at', 'coach_id'];
-    protected $hidden = ['coach_id', 'created_at'];
+    protected $hidden = ['coach_id', 'created_at', 'pivot'];
     public $timestamps = true;
 
     public function Users()
     {
-        return $this->belongsToMany(User::class, 'program_id', 'user_id');
+        return $this->belongsToMany(User::class, 'subscriptions', 'program_id', 'user_id');
     }
 }
