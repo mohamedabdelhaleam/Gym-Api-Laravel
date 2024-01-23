@@ -26,6 +26,21 @@ class UserController extends Controller
             'data' => $users
         ], 200);
     }
+    public function getUser()
+    {
+        $user = Auth::user();
+        $userData = User::find($user->id);
+        if (!$userData) {
+            return response()->json([
+                'status' => "fail",
+                'message' => "Not Found"
+            ], 404);
+        }
+        return response()->json([
+            'status' => "success",
+            'data' => $user
+        ], 200);
+    }
     public function update(Request $request)
     {
         $userData = Auth::user();
