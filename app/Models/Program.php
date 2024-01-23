@@ -10,7 +10,7 @@ class Program extends Model
     use HasFactory;
 
     protected $table = "programs";
-    protected $fillable = ['name', 'description', 'image', 'created_at', 'coach_id'];
+    protected $fillable = ['name', 'description', 'price', 'image', 'created_at', 'coach_id'];
     protected $hidden = ['coach_id', 'created_at', 'pivot'];
     public $timestamps = true;
 
