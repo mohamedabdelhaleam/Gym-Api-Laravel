@@ -27,7 +27,7 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+
 });
 
 ##################### End Auth Routes #########################
@@ -53,6 +53,7 @@ Route::group([
     'prefix' => 'user'
 ], function () {
     Route::patch('', [UserController::class, 'index']);
+    Route::patch('profile', [UserController::class, 'getUser']);
     Route::patch('/update', [UserController::class, 'update']);
     Route::delete('/delete', [UserController::class, 'delete']);
     Route::get('/userPrograms', [UserController::class, 'userPrograms']);
